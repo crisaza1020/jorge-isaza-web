@@ -1,9 +1,10 @@
-/* global React, PageHero, SectionHead, Eyebrow, band, CONTAINER */
+/* global React, PageHero, SectionHead, Eyebrow, band, CONTAINER, useIsMobile */
 const { useState } = React;
 const { Button, Badge, Card, Avatar, Tabs } = window.JorgeIsazaDesignSystem_6b05d8;
 
 function TestimoniosScreen({ onNavigate }) {
   const [tab, setTab] = useState('todos');
+  const isMobile = useIsMobile();
 
   const res = (k) => (window.__resources && window.__resources[k]) || null;
   const items = [
@@ -29,14 +30,14 @@ function TestimoniosScreen({ onNavigate }) {
 
       {/* FEATURED testimonial */}
       <section style={band({ paddingTop: 24 })}>
-        <div style={tStyles.featured}>
-          <div style={tStyles.featuredArt}>
+        <div style={{ ...tStyles.featured, ...(isMobile && { gridTemplateColumns: '1fr', gap: 24, padding: 24 }) }}>
+          <div style={{ ...tStyles.featuredArt, ...(isMobile && { height: 220 }) }}>
             <img src={featured.face} alt={`Retrato de ${featured.n}`}
               style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 30%', borderRadius: 20 }} />
           </div>
           <div style={tStyles.featuredCopy}>
-            <span style={tStyles.quoteMark}>“</span>
-            <p style={tStyles.featuredQuote}>{featured.q}</p>
+            <span style={{ ...tStyles.quoteMark, ...(isMobile && { fontSize: 48 }) }}>"</span>
+            <p style={{ ...tStyles.featuredQuote, ...(isMobile && { fontSize: 22, letterSpacing: '-0.4px' }) }}>{featured.q}</p>
             <div style={tStyles.featuredWho}>
               <Avatar name={featured.n} src={featured.face} size="md" />
               <div>
@@ -50,7 +51,7 @@ function TestimoniosScreen({ onNavigate }) {
 
       {/* FILTER + GRID */}
       <section style={band({ paddingTop: 16, gap: 28 })}>
-        <div style={tStyles.filterRow}>
+        <div style={{ ...tStyles.filterRow, ...(isMobile && { flexDirection: 'column', alignItems: 'flex-start' }) }}>
           <SectionHead eyebrow="Más voces" title="Filtra por tipo de proceso" maxTitle="16ch" />
           <Tabs value={tab} onChange={setTab} items={[
             { label: 'Todos', value: 'todos' },
@@ -61,10 +62,10 @@ function TestimoniosScreen({ onNavigate }) {
           ]} />
         </div>
 
-        <div style={tStyles.grid}>
+        <div style={{ ...tStyles.grid, ...(isMobile && { gridTemplateColumns: '1fr' }) }}>
           {filtered.map((t, i) => (
             <Card key={t.n} variant="cream" style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-              <p style={tStyles.cardQuote}>“{t.q}”</p>
+              <p style={tStyles.cardQuote}>"{t.q}"</p>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 'auto' }}>
                 <Avatar name={t.n} src={t.face} size="sm" />
                 <div>
@@ -78,11 +79,11 @@ function TestimoniosScreen({ onNavigate }) {
       </section>
 
       {/* CTA */}
-      <section style={tStyles.ctaWrap}>
-        <div style={tStyles.cta}>
+      <section style={{ ...tStyles.ctaWrap, ...(isMobile && { padding: '24px 16px 64px' }) }}>
+        <div style={{ ...tStyles.cta, ...(isMobile && { padding: '48px 24px' }) }}>
           <Eyebrow style={{ color: 'rgba(246,239,225,0.7)' }}>Tu historia, la próxima</Eyebrow>
-          <h2 style={tStyles.ctaH}>El primer paso también puede ser tuyo</h2>
-          <p style={tStyles.ctaSub}>Reserva una sesión de escucha y empieza a transformar tu raíz.</p>
+          <h2 style={{ ...tStyles.ctaH, ...(isMobile && { fontSize: 28, letterSpacing: '-0.6px' }) }}>El primer paso también puede ser tuyo</h2>
+          <p style={{ ...tStyles.ctaSub, ...(isMobile && { fontSize: 15 }) }}>Reserva una sesión de escucha y empieza a transformar tu raíz.</p>
           <Button size="lg" variant="onColor" onClick={() => onNavigate('contacto')}>Reservar sesión</Button>
         </div>
       </section>

@@ -1,7 +1,9 @@
-/* global React, PageHero, SectionHead, Eyebrow, band, CONTAINER */
+/* global React, PageHero, SectionHead, Eyebrow, band, CONTAINER, useIsMobile */
 const { Button, Badge, FeatureCard, Card } = window.JorgeIsazaDesignSystem_6b05d8;
 
 function AboutScreen({ onNavigate }) {
+  const isMobile = useIsMobile();
+
   const stats = [
     { n: '30+', l: 'años acompañando procesos' },
     { n: '12.000+', l: 'personas y familias' },
@@ -23,12 +25,12 @@ function AboutScreen({ onNavigate }) {
 
   return (
     <div data-screen-label="About">
-      {/* HERO — portrait + bio */}
-      <section style={aboutStyles.hero}>
+      {/* HERO */}
+      <section style={{ ...aboutStyles.hero, ...(isMobile && { gridTemplateColumns: '1fr', padding: '40px 16px 24px', gap: 28 }) }}>
         <div style={aboutStyles.heroCopy}>
           <Badge uppercase variant="cream" style={{ marginBottom: 18 }}>Dr. Jorge H. Isaza</Badge>
-          <h1 style={aboutStyles.h1}>Investigador y mentor en desarrollo humano</h1>
-          <p style={aboutStyles.lead}>
+          <h1 style={{ ...aboutStyles.h1, ...(isMobile && { fontSize: 34, letterSpacing: '-1px' }) }}>Investigador y mentor en desarrollo humano</h1>
+          <p style={{ ...aboutStyles.lead, ...(isMobile && { fontSize: 16, margin: '14px 0 20px' }) }}>
             Durante más de 30 años, el Dr. Jorge Isaza ha creado metodologías para
             la sanación emocional, el crecimiento personal y el fortalecimiento del
             potencial humano. Su trabajo acompaña a personas y familias a superar
@@ -40,7 +42,7 @@ function AboutScreen({ onNavigate }) {
             <Button size="lg" variant="secondary" onClick={() => onNavigate('metodologia')}>Ver la metodología</Button>
           </div>
         </div>
-        <div style={aboutStyles.heroArt}>
+        <div style={{ ...aboutStyles.heroArt, ...(isMobile && { height: 280 }) }}>
           <img src={(window.__resources && window.__resources.aboutPortrait) || 'assets/about-portrait.jpg'}
             alt="El Dr. Jorge Isaza hablando con micrófono ante un público"
             style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%', borderRadius: 24 }} />
@@ -49,22 +51,24 @@ function AboutScreen({ onNavigate }) {
 
       {/* STATS strip */}
       <section style={aboutStyles.statsWrap}>
-        <div style={aboutStyles.stats}>
+        <div style={{ ...aboutStyles.stats, ...(isMobile && { gridTemplateColumns: '1fr', padding: '32px 16px', gap: 20 }) }}>
           {stats.map((s, i) => (
-            <div key={i} style={aboutStyles.stat}>
-              <div style={aboutStyles.statN}>{s.n}</div>
+            <div key={i} style={{ ...aboutStyles.stat, ...(isMobile && { borderBottom: i < stats.length - 1 ? '1px solid rgba(246,239,225,0.2)' : 'none', paddingBottom: i < stats.length - 1 ? 20 : 0 }) }}>
+              <div style={{ ...aboutStyles.statN, ...(isMobile && { fontSize: 40 }) }}>{s.n}</div>
               <div style={aboutStyles.statL}>{s.l}</div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* PHILOSOPHY — quote + body */}
+      {/* PHILOSOPHY */}
       <section style={band({ paddingTop: 64 })}>
-        <div style={aboutStyles.philo}>
-          <div style={aboutStyles.philoLeft}>
+        <div style={{ ...aboutStyles.philo, ...(isMobile && { gridTemplateColumns: '1fr' }) }}>
+          <div style={{ ...aboutStyles.philoLeft, ...(isMobile && { position: 'static' }) }}>
             <Eyebrow>Su mirada</Eyebrow>
-            <p style={aboutStyles.philoQuote}>“Toda persona tiene un potencial intacto bajo el dolor. Mi trabajo es ayudar a destaparlo.”</p>
+            <p style={{ ...aboutStyles.philoQuote, ...(isMobile && { fontSize: 22, letterSpacing: '-0.5px' })}}>
+              "Toda persona tiene un potencial intacto bajo el dolor. Mi trabajo es ayudar a destaparlo."
+            </p>
           </div>
           <div style={aboutStyles.philoBody}>
             <p style={aboutStyles.bodyP}>
@@ -84,13 +88,13 @@ function AboutScreen({ onNavigate }) {
 
       {/* TIMELINE */}
       <section style={aboutStyles.timeWrap}>
-        <div style={aboutStyles.timeInner}>
+        <div style={{ ...aboutStyles.timeInner, ...(isMobile && { gridTemplateColumns: '1fr', padding: '40px 16px', gap: 32 }) }}>
           <div style={aboutStyles.timeCol}>
             <SectionHead eyebrow="Trayectoria" title="Tres décadas de acompañar procesos" maxTitle="18ch" />
             <div style={aboutStyles.timeline}>
               {timeline.map((e, i) => (
-                <div key={i} style={aboutStyles.tItem}>
-                  <div style={aboutStyles.tYear}>{e.y}</div>
+                <div key={i} style={{ ...aboutStyles.tItem, ...(isMobile && { gridTemplateColumns: '72px 20px 1fr', gap: 12 }) }}>
+                  <div style={{ ...aboutStyles.tYear, ...(isMobile && { fontSize: 17 }) }}>{e.y}</div>
                   <div style={aboutStyles.tDot}></div>
                   <div style={aboutStyles.tBody}>
                     <div style={aboutStyles.tTitle}>{e.t}</div>
@@ -100,18 +104,20 @@ function AboutScreen({ onNavigate }) {
               ))}
             </div>
           </div>
-          <div style={aboutStyles.timeArt}>
-            <img src={(window.__resources && window.__resources.aboutTimeline) || 'assets/about-timeline.jpg'}
-              alt="Una persona celebrando frente a su laptop"
-              style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', borderRadius: 24 }} />
-          </div>
+          {!isMobile && (
+            <div style={aboutStyles.timeArt}>
+              <img src={(window.__resources && window.__resources.aboutTimeline) || 'assets/about-timeline.jpg'}
+                alt="Una persona celebrando frente a su laptop"
+                style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', borderRadius: 24 }} />
+            </div>
+          )}
         </div>
       </section>
 
       {/* VALUES */}
       <section style={band()}>
         <SectionHead eyebrow="Quién es como mentor" title="La forma de acompañar" maxTitle="16ch" align="left" />
-        <div style={aboutStyles.grid3}>
+        <div style={{ ...aboutStyles.grid3, ...(isMobile && { gridTemplateColumns: '1fr' }) }}>
           {values.map((v, i) => (
             <FeatureCard key={i} color={v.c} eyebrow={v.e} title={v.t}>{v.d}</FeatureCard>
           ))}
@@ -119,15 +125,15 @@ function AboutScreen({ onNavigate }) {
       </section>
 
       {/* CTA */}
-      <section style={aboutStyles.ctaWrap}>
-        <div style={aboutStyles.cta}>
+      <section style={{ ...aboutStyles.ctaWrap, ...(isMobile && { padding: '24px 16px 64px' }) }}>
+        <div style={{ ...aboutStyles.cta, ...(isMobile && { padding: '32px 24px', flexDirection: 'column', alignItems: 'flex-start' }) }}>
           <div style={aboutStyles.ctaArt}>
             <img src={(window.__resources && window.__resources.aboutCta) || 'assets/about-cta.jpg'}
               alt="Dos personas chocando las manos en señal de conexión"
-              style={{ display: 'block', width: 120, height: 120, borderRadius: '50%', objectFit: 'cover' }} />
+              style={{ display: 'block', width: 80, height: 80, borderRadius: '50%', objectFit: 'cover' }} />
           </div>
           <div style={aboutStyles.ctaCopy}>
-            <h2 style={aboutStyles.ctaH}>Empecemos tu proceso, juntos</h2>
+            <h2 style={{ ...aboutStyles.ctaH, ...(isMobile && { fontSize: 24 }) }}>Empecemos tu proceso, juntos</h2>
             <p style={aboutStyles.ctaSub}>Reserva una primera sesión de escucha. Sin compromiso, a tu ritmo.</p>
           </div>
           <Button size="lg" onClick={() => onNavigate('contacto')}>Reservar sesión</Button>

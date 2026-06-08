@@ -1,4 +1,4 @@
-/* global React, PageHero, Eyebrow, CONTAINER */
+/* global React, PageHero, Eyebrow, CONTAINER, useIsMobile */
 const { useState, useEffect, useRef } = React;
 const { Button, Badge, Card, Input } = window.JorgeIsazaDesignSystem_6b05d8;
 
@@ -46,6 +46,7 @@ function ContactoScreen() {
   const [form, setForm] = useState({ name: '', email: '', msg: '' });
   const [sent, setSent] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
+  const isMobile = useIsMobile();
 
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
   const canSend = form.name.trim() && form.email.includes('@') && form.msg.trim().length > 4;
@@ -70,7 +71,7 @@ function ContactoScreen() {
         lead="Reserva una sesión de escucha sin compromiso, o escríbenos un mensaje. Cálido, privado y a tu ritmo."
         maxTitle="15ch" />
 
-      <section style={cStyles.layout}>
+      <section style={{ ...cStyles.layout, ...(isMobile && { gridTemplateColumns: '1fr', padding: '16px 16px 48px', gap: 24 }) }}>
         {/* LEFT — panel principal */}
         <div style={cStyles.main}>
           <div style={cStyles.toggle}>
@@ -126,7 +127,7 @@ function ContactoScreen() {
         </div>
 
         {/* RIGHT — beneficios + contacto */}
-        <aside style={cStyles.side}>
+        <aside style={{ ...cStyles.side, ...(isMobile && { position: 'static' }) }}>
           <Card variant="cream" padding="28px">
             <Eyebrow>Una sesión de escucha incluye</Eyebrow>
             <ul style={cStyles.list}>
@@ -157,7 +158,7 @@ function ContactoScreen() {
       <section style={cStyles.faqWrap}>
         <div style={cStyles.faqInner}>
           <Eyebrow>Preguntas frecuentes</Eyebrow>
-          <h2 style={cStyles.faqH}>Antes de empezar, quizá te preguntas…</h2>
+          <h2 style={{ ...cStyles.faqH, ...(isMobile && { fontSize: 26, letterSpacing: '-0.5px' }) }}>Antes de empezar, quizá te preguntas…</h2>
           <div style={cStyles.faqList}>
             {faqs.map((f, i) => {
               const open = openFaq === i;

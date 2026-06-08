@@ -10,11 +10,31 @@ const NAV = [
   { label: 'Contacto', value: 'contacto' },
 ];
 
-/* Cycle of saturated feature-card colors — never repeat in a row. */
 const CARD_CYCLE = ['terracotta', 'forest', 'lavender', 'peach', 'ochre', 'cream'];
 const isDarkCard = (c) => c === 'terracotta' || c === 'forest';
 
 const CONTAINER = 'var(--container-max)';
+
+/* Mobile breakpoint hook — triggers re-render on resize */
+function useIsMobile(bp = 768) {
+  const [m, setM] = React.useState(window.innerWidth <= bp);
+  React.useEffect(() => {
+    const h = () => setM(window.innerWidth <= bp);
+    window.addEventListener('resize', h);
+    return () => window.removeEventListener('resize', h);
+  }, []);
+  return m;
+}
+
+/* Band layout — reads window width so it updates when components re-render on resize */
+const band = (extra) => {
+  const mob = window.innerWidth <= 768;
+  return {
+    maxWidth: CONTAINER, margin: '0 auto',
+    padding: mob ? '40px 16px' : '56px 32px',
+    display: 'flex', flexDirection: 'column', gap: mob ? 20 : 28, ...extra,
+  };
+};
 
 /* Eyebrow — small uppercase label above headlines. */
 function Eyebrow({ children, style }) {
@@ -30,6 +50,7 @@ function Eyebrow({ children, style }) {
 
 /* Section heading block: eyebrow + display h2 + optional lead. */
 function SectionHead({ eyebrow, title, lead, align = 'left', maxTitle = '20ch', style }) {
+  const isMobile = useIsMobile();
   return (
     <div style={{
       display: 'flex', flexDirection: 'column', gap: 14,
@@ -39,12 +60,12 @@ function SectionHead({ eyebrow, title, lead, align = 'left', maxTitle = '20ch', 
       {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
       <h2 style={{
         margin: 0, fontFamily: 'var(--font-display)', fontWeight: 600,
-        fontSize: 40, lineHeight: 1.1, letterSpacing: '-1px',
+        fontSize: isMobile ? 26 : 40, lineHeight: 1.1, letterSpacing: '-1px',
         color: 'var(--color-ink)', maxWidth: maxTitle, textWrap: 'balance',
       }}>{title}</h2>
       {lead && (
         <p style={{
-          margin: 0, fontSize: 18, lineHeight: 1.55, color: 'var(--color-body)',
+          margin: 0, fontSize: isMobile ? 15 : 18, lineHeight: 1.55, color: 'var(--color-body)',
           maxWidth: '50ch', textWrap: 'pretty',
         }}>{lead}</p>
       )}
@@ -54,9 +75,11 @@ function SectionHead({ eyebrow, title, lead, align = 'left', maxTitle = '20ch', 
 
 /* Page hero band on cream — eyebrow + big display title + lead. */
 function PageHero({ eyebrow, title, lead, children, maxTitle = '15ch' }) {
+  const isMobile = useIsMobile();
   return (
     <section style={{
-      maxWidth: CONTAINER, margin: '0 auto', padding: '72px 32px 32px',
+      maxWidth: CONTAINER, margin: '0 auto',
+      padding: isMobile ? '40px 16px 24px' : '72px 32px 32px',
       display: 'flex', flexDirection: 'column', alignItems: 'flex-start',
     }}>
       {eyebrow && (
@@ -66,12 +89,13 @@ function PageHero({ eyebrow, title, lead, children, maxTitle = '15ch' }) {
       )}
       <h1 style={{
         margin: 0, fontFamily: 'var(--font-display)', fontWeight: 600,
-        fontSize: 60, lineHeight: 1.02, letterSpacing: '-2.2px',
+        fontSize: isMobile ? 34 : 60, lineHeight: 1.02,
+        letterSpacing: isMobile ? '-1px' : '-2.2px',
         color: 'var(--color-ink)', maxWidth: maxTitle, textWrap: 'balance',
       }}>{title}</h1>
       {lead && (
         <p style={{
-          margin: '20px 0 0', fontSize: 19, lineHeight: 1.55,
+          margin: '16px 0 0', fontSize: isMobile ? 15 : 19, lineHeight: 1.55,
           color: 'var(--color-body)', maxWidth: '52ch', textWrap: 'pretty',
         }}>{lead}</p>
       )}
@@ -80,9 +104,4 @@ function PageHero({ eyebrow, title, lead, children, maxTitle = '15ch' }) {
   );
 }
 
-const band = (extra) => ({
-  maxWidth: CONTAINER, margin: '0 auto', padding: '56px 32px',
-  display: 'flex', flexDirection: 'column', gap: 28, ...extra,
-});
-
-Object.assign(window, { NAV, CARD_CYCLE, isDarkCard, CONTAINER, Eyebrow, SectionHead, PageHero, band });
+Object.assign(window, { NAV, CARD_CYCLE, isDarkCard, CONTAINER, Eyebrow, SectionHead, PageHero, band, useIsMobile });

@@ -1,7 +1,9 @@
-/* global React, PageHero, SectionHead, Eyebrow, band, CONTAINER */
+/* global React, PageHero, SectionHead, Eyebrow, band, CONTAINER, useIsMobile */
 const { Button, Badge, FeatureCard, Card } = window.JorgeIsazaDesignSystem_6b05d8;
 
 function MetodologiaScreen({ onNavigate }) {
+  const isMobile = useIsMobile();
+
   const stages = [
     { c: 'terracotta', n: '01', t: 'Reconocer', d: 'Mirar de frente la experiencia difícil y darle un nombre, sin juicio ni prisa. Lo que se nombra deja de gobernar desde la sombra.',
       bullets: ['Identificar el bloqueo de raíz', 'Nombrar la emoción sin huir', 'Crear un espacio seguro para mirarla'] },
@@ -33,12 +35,12 @@ function MetodologiaScreen({ onNavigate }) {
             style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 40%', display: 'block' }} />
           <div style={metStyles.heroScrim}></div>
         </div>
-        <div style={metStyles.heroInner}>
+        <div style={{ ...metStyles.heroInner, ...(isMobile && { padding: '64px 16px' }) }}>
           <div style={{ marginBottom: 18 }}>
             <Badge uppercase variant="cream">Metodología</Badge>
           </div>
-          <h1 style={metStyles.heroTitle}>Un camino para sanar la raíz</h1>
-          <p style={metStyles.heroLead}>
+          <h1 style={{ ...metStyles.heroTitle, ...(isMobile && { fontSize: 34, letterSpacing: '-1px' }) }}>Un camino para sanar la raíz</h1>
+          <p style={{ ...metStyles.heroLead, ...(isMobile && { fontSize: 15 }) }}>
             Más de 30 años de investigación en desarrollo humano, condensados en un
             proceso por etapas: claro, humano y sostenido con calidez. No es teoría
             suelta — es un camino que se camina.
@@ -50,15 +52,14 @@ function MetodologiaScreen({ onNavigate }) {
         </div>
       </section>
 
-      {/* THREE STAGES — detailed */}
+      {/* THREE STAGES */}
       <section style={band({ paddingTop: 48 })}>
         <SectionHead eyebrow="El proceso" title="Tres etapas, un mismo hilo: la calidez" maxTitle="20ch" />
-        <div style={metStyles.stageGrid}>
+        <div style={{ ...metStyles.stageGrid, ...(isMobile && { gridTemplateColumns: '1fr' }) }}>
           {stages.map((s) => {
             const dark = s.c === 'terracotta' || s.c === 'forest';
             const ink = dark ? 'var(--color-on-dark)' : 'var(--color-ink)';
             const sub = dark ? 'rgba(246,239,225,0.82)' : 'var(--color-body)';
-            const eye = dark ? 'rgba(246,239,225,0.7)' : 'var(--color-muted)';
             return (
               <FeatureCard key={s.n} color={s.c} eyebrow={`Etapa ${s.n}`} title={s.t}
                 media={
@@ -78,11 +79,11 @@ function MetodologiaScreen({ onNavigate }) {
         </div>
       </section>
 
-      {/* PRINCIPLES — on soft band */}
+      {/* PRINCIPLES */}
       <section style={metStyles.principlesWrap}>
-        <div style={metStyles.principlesInner}>
+        <div style={{ ...metStyles.principlesInner, ...(isMobile && { padding: '40px 16px' }) }}>
           <SectionHead eyebrow="Lo que sostiene el método" title="Cuatro principios innegociables" maxTitle="18ch" />
-          <div style={metStyles.principlesGrid}>
+          <div style={{ ...metStyles.principlesGrid, ...(isMobile && { gridTemplateColumns: '1fr' }) }}>
             {principles.map((p, i) => (
               <div key={i} style={metStyles.principle}>
                 <span style={metStyles.principleNum}>{String(i + 1).padStart(2, '0')}</span>
@@ -102,7 +103,7 @@ function MetodologiaScreen({ onNavigate }) {
           <SectionHead eyebrow="Cómo se vive" title="Formatos para cada momento" maxTitle="16ch" />
           <Button variant="text" onClick={() => onNavigate('recursos')}>Ver recursos →</Button>
         </div>
-        <div style={metStyles.grid3}>
+        <div style={{ ...metStyles.grid3, ...(isMobile && { gridTemplateColumns: '1fr' }) }}>
           {formats.map((f, i) => (
             <FeatureCard key={i} color={f.c} eyebrow={f.e} title={f.t}
               media={<Button variant="onColor" size="sm" onClick={() => onNavigate('contacto')}>Reservar</Button>}>
@@ -113,8 +114,8 @@ function MetodologiaScreen({ onNavigate }) {
       </section>
 
       {/* QUOTE band */}
-      <section style={metStyles.quoteWrap}>
-        <figure style={metStyles.quote}>
+      <section style={{ ...metStyles.quoteWrap, ...(isMobile && { padding: '24px 16px 64px' }) }}>
+        <figure style={{ ...metStyles.quote, ...(isMobile && { padding: '64px 24px' }) }}>
           <div style={metStyles.quoteBg}>
             <img src={(window.__resources && window.__resources.grupoComunidad) || 'assets/grupo-comunidad.jpg'}
               alt="Grupo de personas sonriendo juntas en un encuentro"
@@ -122,7 +123,9 @@ function MetodologiaScreen({ onNavigate }) {
             <div style={metStyles.quoteScrim}></div>
           </div>
           <div style={metStyles.quoteInner}>
-            <p style={metStyles.quoteText}>“No se trata de borrar lo que dolió, sino de transformarlo en una raíz que te sostenga.”</p>
+            <p style={{ ...metStyles.quoteText, ...(isMobile && { fontSize: 22, letterSpacing: '-0.5px' }) }}>
+              "No se trata de borrar lo que dolió, sino de transformarlo en una raíz que te sostenga."
+            </p>
             <figcaption style={metStyles.quoteCap}>Dr. Jorge H. Isaza</figcaption>
           </div>
         </figure>

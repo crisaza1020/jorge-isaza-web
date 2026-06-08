@@ -1,8 +1,8 @@
-/* global React, NAV */
+/* global React, NAV, useIsMobile */
 const { Button } = window.JorgeIsazaDesignSystem_6b05d8;
 
-/* Cream-tinted footer — Jorge NEVER uses a dark footer. */
 function Footer({ onNavigate }) {
+  const isMobile = useIsMobile();
   const cols = [
     { h: 'Explora', items: [
       { t: 'Metodología', r: 'metodologia' },
@@ -41,7 +41,7 @@ function Footer({ onNavigate }) {
         </div>
       </div>
 
-      <div style={footStyles.inner}>
+      <div style={{ ...footStyles.inner, ...(isMobile && { gridTemplateColumns: '1fr 1fr', padding: '40px 16px 0', gap: 28 }) }}>
         <div style={footStyles.brandCol}>
           <button style={footStyles.brand} onClick={() => onNavigate('home')} aria-label="Inicio">
             <img src={(window.__resources && window.__resources.logoMark) || 'assets/logo-mark.svg'} width="40" height="40" alt="" />
@@ -67,7 +67,7 @@ function Footer({ onNavigate }) {
         ))}
       </div>
 
-      <div style={footStyles.bottom}>
+      <div style={{ ...footStyles.bottom, ...(isMobile && { padding: '20px 16px', flexDirection: 'column' }) }}>
         <span>© 2026 Jorge H. Isaza · Desarrollo humano y bienestar integral</span>
         <span style={footStyles.madeWith}>Hecho con calidez</span>
       </div>

@@ -1,15 +1,17 @@
-/* global React, SectionHead, Eyebrow, band, CONTAINER */
+/* global React, SectionHead, Eyebrow, band, CONTAINER, useIsMobile */
 const { Button, Badge, FeatureCard, Card, Avatar } = window.JorgeIsazaDesignSystem_6b05d8;
 
 function HomeScreen({ onNavigate }) {
+  const isMobile = useIsMobile();
+
   return (
     <div data-screen-label="Home">
       {/* HERO 7/5 split */}
-      <section style={homeStyles.hero}>
+      <section style={{ ...homeStyles.hero, ...(isMobile && { gridTemplateColumns: '1fr', padding: '40px 16px 24px', gap: 28 }) }}>
         <div style={homeStyles.heroLeft}>
           <Badge uppercase variant="cream" style={{ marginBottom: 20 }}>30 años acompañando procesos</Badge>
-          <h1 style={homeStyles.h1}>Sanar la raíz para crecer de verdad</h1>
-          <p style={homeStyles.lead}>
+          <h1 style={{ ...homeStyles.h1, ...(isMobile && { fontSize: 38, letterSpacing: '-1.5px' }) }}>Sanar la raíz para crecer de verdad</h1>
+          <p style={{ ...homeStyles.lead, ...(isMobile && { fontSize: 16, margin: '16px 0 20px' }) }}>
             Desarrollo humano y bienestar integral para personas y familias.
             Fortalece tu salud emocional, mejora tus relaciones y construye una
             vida más sana, segura, feliz y próspera.
@@ -27,18 +29,18 @@ function HomeScreen({ onNavigate }) {
             <span style={homeStyles.proofText}>+12.000 personas y familias en proceso de transformación</span>
           </div>
         </div>
-        <div style={homeStyles.heroArt}>
+        <div style={{ ...homeStyles.heroArt, ...(isMobile && { height: 240 }) }}>
           <img src={(window.__resources && window.__resources.heroCumbre) || 'assets/hero-cumbre.jpg'} alt="Silueta de una persona con los brazos abiertos en la cima de una montaña al amanecer"
             style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover', borderRadius: 24 }} />
         </div>
       </section>
 
-      {/* PILARES — what the work strengthens */}
+      {/* PILARES */}
       <section style={band({ paddingTop: 40 })}>
         <SectionHead eyebrow="Bienestar integral"
           title="Cuatro raíces de una vida plena"
           lead="Cada proceso fortalece, a la vez, lo que sostiene tu bienestar: por dentro y en tus vínculos." />
-        <div style={homeStyles.grid4}>
+        <div style={{ ...homeStyles.grid4, ...(isMobile && { gridTemplateColumns: '1fr 1fr' }) }}>
           {[
             { c: 'terracotta', e: 'Por dentro', t: 'Salud emocional', d: 'Reconocer y sostener lo que sientes en lugar de huir de ello.' },
             { c: 'forest', e: 'Con otros', t: 'Relaciones sanas', d: 'Vínculos más honestos, seguros y libres de viejos patrones.' },
@@ -50,16 +52,16 @@ function HomeScreen({ onNavigate }) {
         </div>
       </section>
 
-      {/* METODOLOGÍA teaser — 3 stages, split layout */}
+      {/* METODOLOGÍA teaser */}
       <section style={homeStyles.methodWrap}>
-        <div style={homeStyles.methodInner}>
-          <div style={homeStyles.methodArt}>
+        <div style={{ ...homeStyles.methodInner, ...(isMobile && { gridTemplateColumns: '1fr', padding: '40px 16px', gap: 28 }) }}>
+          <div style={{ ...homeStyles.methodArt, ...(isMobile && { height: 220 }) }}>
             <img src={(window.__resources && window.__resources.methodCirculo) || 'assets/method-circulo.jpg'} alt="Grupo de personas tomadas de las manos en alto, celebrando juntas"
               style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover', borderRadius: 24 }} />
           </div>
           <div style={homeStyles.methodCopy}>
             <Eyebrow>La metodología</Eyebrow>
-            <h2 style={homeStyles.h2}>Un proceso por etapas, sostenido con calidez</h2>
+            <h2 style={{ ...homeStyles.h2, ...(isMobile && { fontSize: 28, letterSpacing: '-0.6px' }) }}>Un proceso por etapas, sostenido con calidez</h2>
             <p style={homeStyles.bodyP}>
               No es teoría suelta: es un camino guiado, paso a paso, para transformar
               la experiencia difícil en aprendizaje que sostiene tu vida.
@@ -90,7 +92,7 @@ function HomeScreen({ onNavigate }) {
           <SectionHead eyebrow="Recursos" title="Para acompañar tu día a día" maxTitle="16ch" />
           <Button variant="text" onClick={() => onNavigate('recursos')}>Ver todos los recursos →</Button>
         </div>
-        <div style={homeStyles.grid3}>
+        <div style={{ ...homeStyles.grid3, ...(isMobile && { gridTemplateColumns: '1fr' }) }}>
           {[
             { c: 'ochre', k: 'Artículo', t: 'Cómo sostener una emoción difícil', m: '5 min de lectura' },
             { c: 'cream', k: 'Guía PDF', t: 'Cuaderno: la raíz de un bloqueo', m: 'Descarga gratuita' },
@@ -108,7 +110,7 @@ function HomeScreen({ onNavigate }) {
       {/* TESTIMONIAL strip */}
       <section style={band()}>
         <SectionHead eyebrow="Historias reales" title="Lo que cambia cuando sanas la raíz" maxTitle="18ch" />
-        <div style={homeStyles.grid3}>
+        <div style={{ ...homeStyles.grid3, ...(isMobile && { gridTemplateColumns: '1fr' }) }}>
           {[
             { q: 'Cambió por completo mi forma de habitar el mundo. Por fin respiro.', n: 'Ana Ruiz', r: 'Mentoría 1:1', face: (window.__resources && window.__resources.faceAna) || 'assets/face-ana.jpg' },
             { q: 'Aprendí a sostener mis emociones en vez de huir de ellas.', n: 'León Posada', r: 'Taller anual', face: (window.__resources && window.__resources.faceDaniel) || 'assets/face-daniel.jpg' },
@@ -122,7 +124,7 @@ function HomeScreen({ onNavigate }) {
                   <div style={{ fontSize: 13, color: 'var(--color-muted)' }}>{t.r}</div>
                 </div>
               </div>
-              <p style={{ margin: 0, fontSize: 16, lineHeight: 1.55, color: 'var(--color-body-strong)' }}>“{t.q}”</p>
+              <p style={{ margin: 0, fontSize: 16, lineHeight: 1.55, color: 'var(--color-body-strong)' }}>"{t.q}"</p>
             </Card>
           ))}
         </div>
@@ -132,11 +134,11 @@ function HomeScreen({ onNavigate }) {
       </section>
 
       {/* CTA BAND */}
-      <section style={homeStyles.ctaWrap}>
-        <div style={homeStyles.cta}>
+      <section style={{ ...homeStyles.ctaWrap, ...(isMobile && { padding: '24px 16px 64px' }) }}>
+        <div style={{ ...homeStyles.cta, ...(isMobile && { padding: '48px 24px' }) }}>
           <Eyebrow style={{ color: 'rgba(246,239,225,0.7)' }}>Empieza hoy</Eyebrow>
-          <h2 style={homeStyles.ctaH}>Da el primer paso hacia tu transformación</h2>
-          <p style={homeStyles.ctaSub}>Reserva una primera sesión de escucha, sin compromiso. Cálida, privada y a tu ritmo.</p>
+          <h2 style={{ ...homeStyles.ctaH, ...(isMobile && { fontSize: 30, letterSpacing: '-0.8px' }) }}>Da el primer paso hacia tu transformación</h2>
+          <p style={{ ...homeStyles.ctaSub, ...(isMobile && { fontSize: 15 }) }}>Reserva una primera sesión de escucha, sin compromiso. Cálida, privada y a tu ritmo.</p>
           <Button size="lg" variant="onColor" onClick={() => onNavigate('contacto')}>Reservar sesión de escucha</Button>
         </div>
       </section>

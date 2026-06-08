@@ -1,9 +1,10 @@
-/* global React, PageHero, SectionHead, Eyebrow, band, CONTAINER */
+/* global React, PageHero, SectionHead, Eyebrow, band, CONTAINER, useIsMobile */
 const { useState } = React;
 const { Button, Badge, FeatureCard, Card, Tabs } = window.JorgeIsazaDesignSystem_6b05d8;
 
 function RecursosScreen({ onNavigate }) {
   const [tab, setTab] = useState('todos');
+  const isMobile = useIsMobile();
 
   const resources = [
     { type: 'articulo', tipo: 'Artículo', color: 'terracotta', t: 'Cómo sostener una emoción difícil sin huir', meta: '5 min de lectura', cta: 'Leer' },
@@ -28,16 +29,16 @@ function RecursosScreen({ onNavigate }) {
 
       {/* FEATURED resource */}
       <section style={{ ...band({ paddingTop: 24 }) }}>
-        <div style={recStyles.featured}>
-          <div style={recStyles.featuredArt}>
+        <div style={{ ...recStyles.featured, ...(isMobile && { gridTemplateColumns: '1fr', gap: 24, padding: 20 }) }}>
+          <div style={{ ...recStyles.featuredArt, ...(isMobile && { height: 200 }) }}>
             <img src={(window.__resources && window.__resources.recFeatured) || 'assets/rec-featured.png'}
               alt="Portada del episodio destacado del podcast"
               style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover', borderRadius: 20 }} />
           </div>
           <div style={recStyles.featuredCopy}>
             <Badge uppercase variant="terracotta" style={{ marginBottom: 16 }}>Destacado · Podcast</Badge>
-            <h2 style={recStyles.featuredTitle}>Sanar la raíz: la conversación completa</h2>
-            <p style={recStyles.featuredLead}>
+            <h2 style={{ ...recStyles.featuredTitle, ...(isMobile && { fontSize: 24, letterSpacing: '-0.5px' }) }}>Sanar la raíz: la conversación completa</h2>
+            <p style={{ ...recStyles.featuredLead, ...(isMobile && { fontSize: 15 }) }}>
               El Dr. Isaza explica, en un episodio especial, por qué el dolor no
               se borra sino que se transforma — y cómo empezar tu propio proceso hoy.
             </p>
@@ -51,7 +52,7 @@ function RecursosScreen({ onNavigate }) {
 
       {/* FILTERS + GRID */}
       <section style={band({ paddingTop: 16, gap: 28 })}>
-        <div style={recStyles.filterRow}>
+        <div style={{ ...recStyles.filterRow, ...(isMobile && { flexDirection: 'column', alignItems: 'flex-start' }) }}>
           <SectionHead eyebrow="Biblioteca" title="Explora por tipo" maxTitle="14ch" />
           <Tabs value={tab} onChange={setTab} items={[
             { label: 'Todos', value: 'todos' },
@@ -62,7 +63,7 @@ function RecursosScreen({ onNavigate }) {
           ]} />
         </div>
 
-        <div style={recStyles.grid}>
+        <div style={{ ...recStyles.grid, ...(isMobile && { gridTemplateColumns: '1fr 1fr' }) }}>
           {filtered.map((r, i) => {
             const dark = r.color === 'terracotta' || r.color === 'forest';
             return (
@@ -87,10 +88,10 @@ function RecursosScreen({ onNavigate }) {
       </section>
 
       {/* NEWSLETTER nudge */}
-      <section style={recStyles.ctaWrap}>
-        <div style={recStyles.cta}>
+      <section style={{ ...recStyles.ctaWrap, ...(isMobile && { padding: '24px 16px 64px' }) }}>
+        <div style={{ ...recStyles.cta, ...(isMobile && { flexDirection: 'column', padding: '32px 24px' }) }}>
           <div>
-            <h2 style={recStyles.ctaH}>¿Prefieres que lleguen a ti?</h2>
+            <h2 style={{ ...recStyles.ctaH, ...(isMobile && { fontSize: 24 }) }}>¿Prefieres que lleguen a ti?</h2>
             <p style={recStyles.ctaSub}>Recibe cada nuevo recurso en tu correo, junto a una práctica breve para la semana.</p>
           </div>
           <Button size="lg" onClick={() => onNavigate('contacto')}>Suscribirme al boletín</Button>
