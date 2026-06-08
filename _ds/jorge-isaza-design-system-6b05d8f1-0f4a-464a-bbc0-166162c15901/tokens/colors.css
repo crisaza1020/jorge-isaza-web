@@ -1,0 +1,50 @@
+/* ============================================================
+   COLORS — Jorge Isaza Design System
+   Warm, healing, earthy palette on a cream canvas.
+   Original palette adapted toward human-development warmth.
+   ============================================================ */
+
+:root {
+  /* ---- Brand & accent (the warm "card" palette) ---- */
+  --color-primary:        #1c1a17; /* warm near-black — CTAs, h1/h2 ink */
+  --color-terracotta:     #c75d3f; /* signature warm clay — on-dark text  */
+  --color-forest:         #2c4a40; /* deep healing green  — on-dark text  */
+  --color-lavender:       #bcaee0; /* dusty lavender      — dark text     */
+  --color-peach:          #f3bd96; /* soft peach          — dark text     */
+  --color-ochre:          #e2a73f; /* warm gold           — dark text     */
+  --color-sage:           #6f9476; /* sage accent (illustrations/badges)  */
+  --color-coral:          #e0795f; /* coral accent / highlights           */
+  --color-mint:           #a8cbb4; /* mint accent                         */
+
+  /* ---- Surface ---- */
+  --color-canvas:               #fdf8ef; /* default page floor — cream     */
+  --color-surface-soft:         #f8f1e4; /* footer + CTA-band background    */
+  --color-surface-card:         #f2ead8; /* cream feature/testimonial cards */
+  --color-surface-strong:       #ece2cd; /* emphasized cream bands          */
+  --color-surface-dark:         #20211c; /* warm dark cards (rare)          */
+  --color-surface-dark-elevated:#2c2d26; /* elevated dark cards             */
+  --color-hairline:             #e7ddc9; /* 1px warm borders                */
+
+  /* ---- Text ---- */
+  --color-ink:         #1c1a17; /* headlines + primary text   */
+  --color-body-strong: #2a261f; /* lead paragraphs            */
+  --color-body:        #4a443a; /* default running-text       */
+  --color-muted:       #756d5f; /* sub-heads, breadcrumbs      */
+  --color-muted-soft:  #a39a89; /* captions, fine-print        */
+  --color-on-primary:  #fbf6ec; /* text on primary + dark cards*/
+  --color-on-dark:     #f6efe1; /* text on saturated dark cards*/
+
+  /* ---- Semantic ---- */
+  --color-success: #4e8b5b;
+  --color-warning: #d99a3a;
+  --color-error:   #c4503b;
+
+  /* ---- Semantic aliases ---- */
+  --text-heading:     var(--color-ink);
+  --text-body:        var(--color-body);
+  --text-muted:       var(--color-muted);
+  --surface-page:     var(--color-canvas);
+  --surface-card:     var(--color-surface-card);
+  --border-hairline:  var(--color-hairline);
+  --accent:           var(--color-terracotta);
+}

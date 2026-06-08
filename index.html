@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dr. Jorge Isaza — Desarrollo humano y bienestar integral</title>
+<link rel="stylesheet" href="_ds/jorge-isaza-design-system-6b05d8f1-0f4a-464a-bbc0-166162c15901/styles.css" />
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--color-canvas);
+    font-family: var(--font-body);
+    color: var(--color-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  button { font-family: var(--font-body); }
+  a { color: inherit; }
+  image-slot { font-family: var(--font-body); }
+  ::selection { background: var(--color-peach); color: var(--color-ink); }
+  @keyframes pageIn { from { transform: translateY(10px); } to { transform: none; } }
+  .page-enter { animation: pageIn 300ms cubic-bezier(.22,.61,.36,1); }
+  @media (prefers-reduced-motion: reduce) { .page-enter { animation: none; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="_ds/jorge-isaza-design-system-6b05d8f1-0f4a-464a-bbc0-166162c15901/_ds_bundle.js"></script>
+<script src="assets/image-slot.js"></script>
+
+<script type="text/babel" src="components/Shared.jsx"></script>
+<script type="text/babel" src="components/TopNav.jsx"></script>
+<script type="text/babel" src="components/Footer.jsx"></script>
+<script type="text/babel" src="components/HomeScreen.jsx"></script>
+<script type="text/babel" src="components/MetodologiaScreen.jsx"></script>
+<script type="text/babel" src="components/RecursosScreen.jsx"></script>
+<script type="text/babel" src="components/AboutScreen.jsx"></script>
+<script type="text/babel" src="components/TestimoniosScreen.jsx"></script>
+<script type="text/babel" src="components/ContactoScreen.jsx"></script>
+
+<script type="text/babel">
+  const { useState, useEffect } = React;
+
+  function App() {
+    const [route, setRoute] = useState(() => (window.location.hash || '#home').replace('#', '') || 'home');
+
+    const navigate = (r) => {
+      setRoute(r);
+      window.location.hash = r;
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    };
+
+    useEffect(() => {
+      const onHash = () => setRoute((window.location.hash || '#home').replace('#', '') || 'home');
+      window.addEventListener('hashchange', onHash);
+      return () => window.removeEventListener('hashchange', onHash);
+    }, []);
+
+    const screens = {
+      home: HomeScreen,
+      metodologia: MetodologiaScreen,
+      recursos: RecursosScreen,
+      about: AboutScreen,
+      testimonios: TestimoniosScreen,
+      contacto: ContactoScreen,
+    };
+    const Screen = screens[route] || HomeScreen;
+
+    return (
+      <>
+        <TopNav route={route} onNavigate={navigate} />
+        <main key={route} className="page-enter">
+          <Screen onNavigate={navigate} />
+        </main>
+        <Footer onNavigate={navigate} />
+      </>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

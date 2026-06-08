@@ -1,0 +1,12 @@
+/* ============================================================
+   ELEVATION — Jorge Isaza Design System
+   Depth comes from warm color contrast, NOT heavy shadows.
+   ============================================================ */
+
+:root {
+  --elevation-flat: none;
+  --border-card: 1px solid var(--color-hairline);
+  /* The single, faint hover-elevation shadow (used rarely). */
+  --shadow-soft: 0 12px 32px -16px rgba(28, 26, 23, 0.18);
+  --shadow-hover: 0 16px 40px -18px rgba(28, 26, 23, 0.22);
+}

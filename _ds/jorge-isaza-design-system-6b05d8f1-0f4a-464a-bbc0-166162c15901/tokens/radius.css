@@ -1,0 +1,14 @@
+/* ============================================================
+   BORDER RADIUS — Jorge Isaza Design System
+   Generous radii match the rounded display type's warmth.
+   ============================================================ */
+
+:root {
+  --radius-xs:   6px;    /* small badges, dropdown items        */
+  --radius-sm:   8px;    /* small buttons, hairline accents     */
+  --radius-md:   12px;   /* CTA buttons, text inputs            */
+  --radius-lg:   16px;   /* content / testimonial / pricing     */
+  --radius-xl:   24px;   /* saturated feature cards             */
+  --radius-pill: 9999px; /* tabs, badge pills                   */
+  --radius-full: 9999px; /* avatars, icon buttons               */
+}

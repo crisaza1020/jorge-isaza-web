@@ -1,0 +1,23 @@
+/* ============================================================
+   FONTS — Jorge Isaza Design System
+   ------------------------------------------------------------
+   SUBSTITUTION NOTE:
+   The original brief references "Plain Black" (a custom rounded
+   display face licensed privately). It is not publicly available.
+   We substitute a warm, characterful display + a humanist body,
+   both from Google Fonts, supporting full Spanish/Latin-Extended:
+
+     Display  →  "Bricolage Grotesque"  (warm editorial display)
+     Body/UI  →  "Hanken Grotesk"       (humanist, rounded terminals)
+
+   Loaded from the Google Fonts CDN via @import below so any
+   consumer linking styles.css picks them up automatically.
+   Swap these for licensed brand fonts when available.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  --font-display: 'Bricolage Grotesque', 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}

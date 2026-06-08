@@ -1,0 +1,19 @@
+/* ============================================================
+   SPACING — Jorge Isaza Design System  (4px base unit)
+   ============================================================ */
+
+:root {
+  --space-xxs: 4px;
+  --space-xs:  8px;
+  --space-sm:  12px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  32px;
+  --space-xxl: 48px;
+  --space-section: 96px; /* vertical rhythm between major bands */
+
+  /* Layout */
+  --container-max: 1280px;
+  --card-pad-feature: var(--space-xl); /* 32px */
+  --card-pad-content: var(--space-lg); /* 24px */
+}
