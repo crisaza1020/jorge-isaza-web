@@ -10,7 +10,7 @@ function TopNav({ route, onNavigate }) {
 
   return (
     <header style={navStyles.bar}>
-      <div style={navStyles.inner}>
+      <div className="nav-inner" style={navStyles.inner}>
         <button style={navStyles.brand} onClick={() => go('home')} aria-label="Inicio">
           <img src={(window.__resources && window.__resources.logoMark) || 'assets/logo-mark.svg'} width="36" height="36" alt="" />
           <span style={navStyles.word}>Jorge Isaza</span>
@@ -97,6 +97,9 @@ navCss.textContent = `
   @media (max-width: 920px) {
     .nav-links { display: none !important; }
     .nav-burger { display: flex !important; }
+  }
+  @media (max-width: 768px) {
+    .nav-inner { padding-left: 16px !important; padding-right: 16px !important; }
   }
 `;
 document.head.appendChild(navCss);

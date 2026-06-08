@@ -29,7 +29,7 @@ function Footer({ onNavigate }) {
     <footer style={footStyles.foot}>
       {/* Newsletter strip */}
       <div style={footStyles.news}>
-        <div style={footStyles.newsInner}>
+        <div style={{ ...footStyles.newsInner, ...(isMobile && { flexDirection: 'column', padding: '32px 16px', gap: 20 }) }}>
           <div>
             <h3 style={footStyles.newsH}>Acompáñate cada semana</h3>
             <p style={footStyles.newsP}>Una carta breve con una práctica para sostener tu proceso. Sin ruido.</p>
@@ -41,8 +41,8 @@ function Footer({ onNavigate }) {
         </div>
       </div>
 
-      <div style={{ ...footStyles.inner, ...(isMobile && { gridTemplateColumns: '1fr 1fr', padding: '40px 16px 0', gap: 28 }) }}>
-        <div style={footStyles.brandCol}>
+      <div style={{ ...footStyles.inner, ...(isMobile && { gridTemplateColumns: '1fr 1fr', padding: '32px 16px 0', gap: 24 }) }}>
+        <div style={{ ...footStyles.brandCol, ...(isMobile && { gridColumn: '1 / -1' }) }}>
           <button style={footStyles.brand} onClick={() => onNavigate('home')} aria-label="Inicio">
             <img src={(window.__resources && window.__resources.logoMark) || 'assets/logo-mark.svg'} width="40" height="40" alt="" />
             <span style={footStyles.word}>Jorge Isaza</span>
