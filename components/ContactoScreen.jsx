@@ -7,9 +7,10 @@ const CALENDLY_URL = 'https://calendly.com/jorgeisazamind/conversemos';
 /* Calendly inline widget — loads the official script once and renders the embed */
 function CalendlyWidget() {
   const ref = useRef(null);
+  const isMobile = useIsMobile();
+  const height = isMobile ? Math.max(window.innerHeight - 68, 600) : 700;
 
   useEffect(() => {
-    /* Load the Calendly widget script if not already present */
     if (!document.getElementById('calendly-script')) {
       const script = document.createElement('script');
       script.id = 'calendly-script';
@@ -17,7 +18,6 @@ function CalendlyWidget() {
       script.async = true;
       document.head.appendChild(script);
     }
-    /* If Calendly is already loaded, init manually */
     if (window.Calendly && ref.current) {
       window.Calendly.initInlineWidget({
         url: CALENDLY_URL,
@@ -35,7 +35,7 @@ function CalendlyWidget() {
         ref={ref}
         className="calendly-inline-widget"
         data-url={CALENDLY_URL + '?hide_gdpr_banner=1&background_color=fdf8ef&text_color=1c1a17&primary_color=c75d3f'}
-        style={{ minWidth: 280, height: 660, overflow: 'hidden' }}
+        style={{ minWidth: 280, height, overflow: 'hidden' }}
       />
     </div>
   );

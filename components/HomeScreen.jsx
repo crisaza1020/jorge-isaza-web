@@ -7,7 +7,7 @@ function HomeScreen({ onNavigate }) {
   return (
     <div data-screen-label="Home">
       {/* HERO 7/5 split */}
-      <section style={{ ...homeStyles.hero, ...(isMobile && { gridTemplateColumns: '1fr', padding: '40px 16px 24px', gap: 28 }) }}>
+      <section style={{ ...homeStyles.hero, ...(isMobile && { gridTemplateColumns: '1fr', padding: '40px 20px 24px', gap: 28 }) }}>
         <div style={homeStyles.heroLeft}>
           <Badge uppercase variant="cream" style={{ marginBottom: 20 }}>30 años acompañando procesos</Badge>
           <h1 style={{ ...homeStyles.h1, ...(isMobile && { fontSize: 38, letterSpacing: '-1.5px' }) }}>Sanar la raíz para crecer de verdad</h1>

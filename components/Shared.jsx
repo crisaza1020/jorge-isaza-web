@@ -31,7 +31,7 @@ const band = (extra) => {
   const mob = window.innerWidth <= 768;
   return {
     maxWidth: CONTAINER, margin: '0 auto',
-    padding: mob ? '40px 16px' : '56px 32px',
+    padding: mob ? '40px 20px' : '56px 32px',
     display: 'flex', flexDirection: 'column', gap: mob ? 20 : 28, ...extra,
   };
 };
@@ -79,7 +79,7 @@ function PageHero({ eyebrow, title, lead, children, maxTitle = '15ch' }) {
   return (
     <section style={{
       maxWidth: CONTAINER, margin: '0 auto',
-      padding: isMobile ? '40px 16px 24px' : '72px 32px 32px',
+      padding: isMobile ? '40px 20px 24px' : '72px 32px 32px',
       display: 'flex', flexDirection: 'column', alignItems: 'flex-start',
     }}>
       {eyebrow && (
