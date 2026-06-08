@@ -40,7 +40,7 @@ function HomeScreen({ onNavigate }) {
         <SectionHead eyebrow="Bienestar integral"
           title="Cuatro raíces de una vida plena"
           lead="Cada proceso fortalece, a la vez, lo que sostiene tu bienestar: por dentro y en tus vínculos." />
-        <div style={{ ...homeStyles.grid4, ...(isMobile && { gridTemplateColumns: '1fr 1fr' }) }}>
+        <div style={{ ...homeStyles.grid4, ...(isMobile && { gridTemplateColumns: '1fr' }) }}>
           {[
             { c: 'terracotta', e: 'Por dentro', t: 'Salud emocional', d: 'Reconocer y sostener lo que sientes en lugar de huir de ello.' },
             { c: 'forest', e: 'Con otros', t: 'Relaciones sanas', d: 'Vínculos más honestos, seguros y libres de viejos patrones.' },

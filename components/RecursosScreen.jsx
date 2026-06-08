@@ -63,7 +63,7 @@ function RecursosScreen({ onNavigate }) {
           ]} />
         </div>
 
-        <div style={{ ...recStyles.grid, ...(isMobile && { gridTemplateColumns: '1fr 1fr' }) }}>
+        <div style={{ ...recStyles.grid, ...(isMobile && { gridTemplateColumns: '1fr' }) }}>
           {filtered.map((r, i) => {
             const dark = r.color === 'terracotta' || r.color === 'forest';
             return (
