@@ -7,7 +7,7 @@ function HomeScreen({ onNavigate }) {
   return (
     <div data-screen-label="Home">
       {/* HERO 7/5 split */}
-      <section style={{ ...homeStyles.hero, ...(isMobile && { gridTemplateColumns: '1fr', padding: '40px 20px 24px', gap: 28 }) }}>
+      <section style={{ ...homeStyles.hero, ...(isMobile && { gridTemplateColumns: '1fr', padding: '56px 20px 32px', gap: 32 }) }}>
         <div style={homeStyles.heroLeft}>
           <Badge uppercase variant="cream" style={{ marginBottom: 20 }}>30 años acompañando procesos</Badge>
           <h1 style={{ ...homeStyles.h1, ...(isMobile && { fontSize: 38, letterSpacing: '-1.5px' }) }}>Sanar la raíz para crecer de verdad</h1>
@@ -54,7 +54,7 @@ function HomeScreen({ onNavigate }) {
 
       {/* METODOLOGÍA teaser */}
       <section style={homeStyles.methodWrap}>
-        <div style={{ ...homeStyles.methodInner, ...(isMobile && { gridTemplateColumns: '1fr', padding: '40px 16px', gap: 28 }) }}>
+        <div style={{ ...homeStyles.methodInner, ...(isMobile && { gridTemplateColumns: '1fr', padding: '48px 20px', gap: 32 }) }}>
           <div style={{ ...homeStyles.methodArt, ...(isMobile && { height: 220 }) }}>
             <img src={(window.__resources && window.__resources.methodCirculo) || 'assets/method-circulo.jpg'} alt="Grupo de personas tomadas de las manos en alto, celebrando juntas"
               style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover', borderRadius: 24 }} />
@@ -134,7 +134,7 @@ function HomeScreen({ onNavigate }) {
       </section>
 
       {/* CTA BAND */}
-      <section style={{ ...homeStyles.ctaWrap, ...(isMobile && { padding: '24px 16px 64px' }) }}>
+      <section style={{ ...homeStyles.ctaWrap, ...(isMobile && { padding: '40px 20px 80px' }) }}>
         <div style={{ ...homeStyles.cta, ...(isMobile && { padding: '48px 24px' }) }}>
           <Eyebrow style={{ color: 'rgba(246,239,225,0.7)' }}>Empieza hoy</Eyebrow>
           <h2 style={{ ...homeStyles.ctaH, ...(isMobile && { fontSize: 30, letterSpacing: '-0.8px' }) }}>Da el primer paso hacia tu transformación</h2>
