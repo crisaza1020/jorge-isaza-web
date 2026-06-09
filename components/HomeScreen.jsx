@@ -1,6 +1,29 @@
 /* global React, SectionHead, Eyebrow, band, CONTAINER, useIsMobile */
 const { Button, Badge, FeatureCard, Card, Avatar } = window.JorgeIsazaDesignSystem_6b05d8;
 
+/* Pillar card — saturated FeatureCard with a photo on top */
+function PillarCard({ c, e, t, d, img, alt, isMobile }) {
+  const palette = {
+    terracotta: { background: 'var(--color-terracotta)', dark: true },
+    forest: { background: 'var(--color-forest)', dark: true },
+    lavender: { background: 'var(--color-lavender)', dark: false },
+    peach: { background: 'var(--color-peach)', dark: false },
+  };
+  const pal = palette[c] || palette.terracotta;
+  const ink = pal.dark ? 'var(--color-on-dark)' : 'var(--color-ink)';
+  const sub = pal.dark ? 'rgba(246,239,225,0.82)' : 'var(--color-body)';
+  const eye = pal.dark ? 'rgba(246,239,225,0.7)' : 'var(--color-muted)';
+  return (
+    <div style={{ background: pal.background, borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
+      <img src={(window.__resources && window.__resources[img]) || img} alt={alt}
+        style={{ display: 'block', width: '100%', height: isMobile ? 160 : 180, objectFit: 'cover', borderRadius: 14 }} />
+      <span style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--type-caption-uppercase-size)', fontWeight: 600, letterSpacing: 'var(--type-caption-uppercase-ls)', textTransform: 'uppercase', color: eye }}>{e}</span>
+      <h3 style={{ margin: 0, fontFamily: 'var(--font-display)', fontSize: 'var(--type-display-sm-size)', fontWeight: 600, lineHeight: 'var(--type-display-sm-lh)', letterSpacing: 'var(--type-display-sm-ls)', color: ink }}>{t}</h3>
+      <p style={{ margin: 0, fontFamily: 'var(--font-body)', fontSize: 'var(--type-body-md-size)', lineHeight: 'var(--type-body-md-lh)', color: sub, maxWidth: '46ch' }}>{d}</p>
+    </div>
+  );
+}
+
 function HomeScreen({ onNavigate }) {
   const isMobile = useIsMobile();
 
@@ -42,12 +65,12 @@ function HomeScreen({ onNavigate }) {
           lead="Cada proceso fortalece, a la vez, lo que sostiene tu bienestar: por dentro y en tus vínculos." />
         <div style={{ ...homeStyles.grid4, ...(isMobile && { gridTemplateColumns: '1fr' }) }}>
           {[
-            { c: 'terracotta', e: 'Por dentro', t: 'Salud emocional', d: 'Reconocer y sostener lo que sientes en lugar de huir de ello.' },
-            { c: 'forest', e: 'Con otros', t: 'Relaciones sanas', d: 'Vínculos más honestos, seguros y libres de viejos patrones.' },
-            { c: 'lavender', e: 'Contigo', t: 'Conciencia de ti', d: 'Conocerte con honestidad para decidir desde tu raíz, no desde el miedo.' },
-            { c: 'peach', e: 'Hacia adelante', t: 'Vida próspera', d: 'Construir, con calma, una vida más sana, segura, feliz y próspera.' },
+            { c: 'terracotta', e: 'Por dentro', t: 'Salud emocional', d: 'Reconocer y sostener lo que sientes en lugar de huir de ello.', img: 'assets/pillar-emocional.jpg', alt: 'Mujer relajándose en su sala, cuidando de sí misma' },
+            { c: 'forest', e: 'Con otros', t: 'Relaciones sanas', d: 'Vínculos más honestos, seguros y libres de viejos patrones.', img: 'assets/pillar-relaciones.jpg', alt: 'Grupo de mujeres riendo juntas' },
+            { c: 'lavender', e: 'Contigo', t: 'Conciencia de ti', d: 'Conocerte con honestidad para decidir desde tu raíz, no desde el miedo.', img: 'assets/pillar-conciencia.jpg', alt: 'Silueta de una persona saltando con los brazos abiertos al atardecer' },
+            { c: 'peach', e: 'Hacia adelante', t: 'Vida próspera', d: 'Construir, con calma, una vida más sana, segura, feliz y próspera.', img: 'assets/pillar-prospera.jpg', alt: 'Pareja abrazada al aire libre sosteniendo un ramo de flores silvestres' },
           ].map((p, i) => (
-            <FeatureCard key={i} color={p.c} eyebrow={p.e} title={p.t}>{p.d}</FeatureCard>
+            <PillarCard key={i} {...p} isMobile={isMobile} />
           ))}
         </div>
       </section>
