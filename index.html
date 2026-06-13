@@ -22,6 +22,12 @@
   button { font-family: var(--font-body); }
   a { color: inherit; }
   image-slot { font-family: var(--font-body); }
+  button, .nav-links button, .nav-sheet button, .page-enter { transition: transform 180ms ease, box-shadow 180ms ease, color 180ms ease, background-color 180ms ease; }
+  button:not(:disabled):hover { transform: translateY(-1px); }
+  button:not(:disabled):active { transform: translateY(0); }
+  .nav-links button:hover, .nav-sheet button:hover { color: var(--color-ink); }
+  .nav-sheet button:hover { background: rgba(199,93,63,.06); }
+  button:focus-visible { outline: 2px solid rgba(199,93,63,.9); outline-offset: 3px; }
   ::selection { background: var(--color-peach); color: var(--color-ink); }
   @keyframes pageIn { from { transform: translateY(10px); } to { transform: none; } }
   .page-enter { animation: pageIn 300ms cubic-bezier(.22,.61,.36,1); }

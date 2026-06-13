@@ -11,7 +11,7 @@ function TopNav({ route, onNavigate }) {
   return (
     <header style={navStyles.bar}>
       <div className="nav-inner" style={navStyles.inner}>
-        <button style={navStyles.brand} onClick={() => go('home')} aria-label="Inicio">
+        <button className="nav-brand" style={navStyles.brand} onClick={() => go('home')} aria-label="Inicio">
           <img src={(window.__resources && window.__resources.logoMark) || 'assets/logo-mark.svg'} width="42" height="42" alt="Logo Jorge Isaza" />
           <span style={navStyles.word}>Jorge Isaza</span>
         </button>
@@ -20,7 +20,7 @@ function TopNav({ route, onNavigate }) {
           {NAV.map((l) => {
             const on = route === l.value;
             return (
-              <button key={l.value} onClick={() => go(l.value)}
+              <button className="nav-link" key={l.value} onClick={() => go(l.value)}
                 style={{ ...navStyles.link, color: on ? 'var(--color-ink)' : 'var(--color-muted)' }}>
                 {l.label}
                 <span style={{ ...navStyles.dot, opacity: on ? 1 : 0 }}></span>
@@ -42,7 +42,7 @@ function TopNav({ route, onNavigate }) {
       {open && (
         <div className="nav-sheet" style={navStyles.sheet}>
           {NAV.map((l) => (
-            <button key={l.value} onClick={() => go(l.value)}
+            <button className="nav-sheet-link" key={l.value} onClick={() => go(l.value)}
               style={{ ...navStyles.sheetLink, color: route === l.value ? 'var(--color-ink)' : 'var(--color-body)' }}>
               {l.label}
             </button>
@@ -100,6 +100,18 @@ navCss.textContent = `
   }
   @media (max-width: 768px) {
     .nav-inner { padding-left: 16px !important; padding-right: 16px !important; }
+  }
+  .nav-link:not(:disabled):hover,
+  .nav-sheet-link:not(:disabled):hover,
+  .nav-brand:not(:disabled):hover {
+    transform: translateY(-1px);
+  }
+  .nav-link:focus-visible,
+  .nav-sheet-link:focus-visible,
+  .nav-burger:focus-visible,
+  .nav-brand:focus-visible {
+    outline: 2px solid rgba(199,93,63,.85);
+    outline-offset: 3px;
   }
 `;
 document.head.appendChild(navCss);
