@@ -170,7 +170,18 @@ function HomeScreen({ onNavigate }) {
 }
 
 const homeStyles = {
-  hero: { maxWidth: CONTAINER, margin: '0 auto', padding: '64px 32px 24px', display: 'grid', gridTemplateColumns: '6fr 6fr', gap: 48, alignItems: 'center' },
+  hero: {
+    maxWidth: CONTAINER,
+    margin: '0 auto',
+    padding: '64px 32px 24px',
+    display: 'grid',
+    gridTemplateColumns: '6fr 6fr',
+    gap: 48,
+    alignItems: 'center',
+    background: 'var(--color-surface-soft)',
+    borderRadius: '36px',
+    boxShadow: '0 30px 80px rgba(0,0,0,0.08)',
+  },
   heroLeft: { display: 'flex', flexDirection: 'column', alignItems: 'flex-start' },
   h1: { margin: 0, fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 64, lineHeight: 1.0, letterSpacing: '-2.5px', color: 'var(--color-ink)', maxWidth: '13ch', textWrap: 'balance' },
   lead: { margin: '22px 0 28px', fontSize: 18, lineHeight: 1.55, color: 'var(--color-body)', maxWidth: '48ch', textWrap: 'pretty' },
