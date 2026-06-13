@@ -12,7 +12,7 @@ function TopNav({ route, onNavigate }) {
     <header style={navStyles.bar}>
       <div className="nav-inner" style={navStyles.inner}>
         <button style={navStyles.brand} onClick={() => go('home')} aria-label="Inicio">
-          <img src={(window.__resources && window.__resources.logoMark) || 'assets/logo-mark.svg'} width="36" height="36" alt="" />
+          <img src={(window.__resources && window.__resources.logoMark) || 'assets/logo-mark.svg'} width="42" height="42" alt="Logo Jorge Isaza" />
           <span style={navStyles.word}>Jorge Isaza</span>
         </button>
 
