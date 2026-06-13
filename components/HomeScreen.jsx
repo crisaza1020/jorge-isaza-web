@@ -40,8 +40,8 @@ function HomeScreen({ onNavigate }) {
             vida más sana, segura, feliz y próspera.
           </p>
           <div style={homeStyles.heroBtns}>
-            <Button size="lg" onClick={() => onNavigate('contacto')}>Da el primer paso</Button>
-            <Button size="lg" variant="secondary" onClick={() => onNavigate('metodologia')}>Conoce la metodología</Button>
+            <Button className="hero-cta hero-cta-primary" size="lg" onClick={() => onNavigate('contacto')}>Da el primer paso</Button>
+            <Button className="hero-cta hero-cta-secondary" size="lg" variant="secondary" onClick={() => onNavigate('metodologia')}>Conoce la metodología</Button>
           </div>
           <div style={homeStyles.proof}>
             <div style={homeStyles.avatars}>
