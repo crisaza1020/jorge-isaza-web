@@ -38,8 +38,8 @@ function AboutScreen({ onNavigate }) {
             sana, segura, feliz y próspera.
           </p>
           <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
-            <Button size="lg" onClick={() => onNavigate('contacto')}>Reservar una sesión</Button>
-            <Button size="lg" variant="secondary" onClick={() => onNavigate('metodologia')}>Ver la metodología</Button>
+            <Button className="primary-button" size="lg" onClick={() => onNavigate('contacto')}>Reservar una sesión</Button>
+            <Button className="secondary-button" size="lg" variant="secondary" onClick={() => onNavigate('metodologia')}>Ver la metodología</Button>
           </div>
         </div>
         <div style={{ ...aboutStyles.heroArt, ...(isMobile && { height: 280 }) }}>
@@ -136,7 +136,7 @@ function AboutScreen({ onNavigate }) {
             <h2 style={{ ...aboutStyles.ctaH, ...(isMobile && { fontSize: 24 }) }}>Empecemos tu proceso, juntos</h2>
             <p style={aboutStyles.ctaSub}>Reserva una primera sesión de escucha. Sin compromiso, a tu ritmo.</p>
           </div>
-          <Button size="lg" onClick={() => onNavigate('contacto')}>Reservar sesión</Button>
+          <Button className="primary-button" size="lg" onClick={() => onNavigate('contacto')}>Reservar sesión</Button>
         </div>
       </section>
     </div>

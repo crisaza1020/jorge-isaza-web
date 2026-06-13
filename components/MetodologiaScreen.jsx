@@ -46,8 +46,8 @@ function MetodologiaScreen({ onNavigate }) {
             suelta — es un camino que se camina.
           </p>
           <div style={{ display: 'flex', gap: 14, marginTop: 28, flexWrap: 'wrap' }}>
-            <Button size="lg" onClick={() => onNavigate('contacto')}>Empezar mi proceso</Button>
-            <Button size="lg" variant="onColor" onClick={() => onNavigate('about')}>Conocer al Dr. Isaza</Button>
+            <Button className="primary-button" size="lg" onClick={() => onNavigate('contacto')}>Empezar mi proceso</Button>
+            <Button className="oncolor-button" size="lg" variant="onColor" onClick={() => onNavigate('about')}>Conocer al Dr. Isaza</Button>
           </div>
         </div>
       </section>
@@ -101,12 +101,12 @@ function MetodologiaScreen({ onNavigate }) {
       <section style={band()}>
         <div style={metStyles.rowHead}>
           <SectionHead eyebrow="Cómo se vive" title="Formatos para cada momento" maxTitle="16ch" />
-          <Button variant="text" onClick={() => onNavigate('recursos')}>Ver recursos →</Button>
+          <Button className="text-cta" variant="text" onClick={() => onNavigate('recursos')}>Ver recursos →</Button>
         </div>
         <div style={{ ...metStyles.grid3, ...(isMobile && { gridTemplateColumns: '1fr' }) }}>
           {formats.map((f, i) => (
             <FeatureCard key={i} color={f.c} eyebrow={f.e} title={f.t}
-              media={<Button variant="onColor" size="sm" onClick={() => onNavigate('contacto')}>Reservar</Button>}>
+              media={<Button className="oncolor-button" variant="onColor" size="sm" onClick={() => onNavigate('contacto')}>Reservar</Button>}>
               {f.d}
             </FeatureCard>
           ))}

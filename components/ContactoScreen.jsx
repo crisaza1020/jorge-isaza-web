@@ -101,7 +101,7 @@ function ContactoScreen() {
                   <p style={{ margin: '0 0 24px', color: 'var(--color-body)', maxWidth: '34ch', marginLeft: 'auto', marginRight: 'auto' }}>
                     Gracias, {form.name.split(' ')[0]}. Te responderemos a {form.email} muy pronto.
                   </p>
-                  <Button variant="secondary" onClick={() => { setSent(false); setForm({ name: '', email: '', msg: '' }); }}>Escribir otro</Button>
+                  <Button className="secondary-button" variant="secondary" onClick={() => { setSent(false); setForm({ name: '', email: '', msg: '' }); }}>Escribir otro</Button>
                 </div>
               ) : (
                 <>
@@ -117,7 +117,7 @@ function ContactoScreen() {
                         style={cStyles.textarea} />
                     </div>
                   </div>
-                  <Button size="lg" disabled={!canSend} onClick={() => setSent(true)} style={{ marginTop: 24, width: '100%' }}>
+                  <Button className="primary-button" size="lg" disabled={!canSend} onClick={() => setSent(true)} style={{ marginTop: 24, width: '100%' }}>
                     Enviar mensaje
                   </Button>
                 </>

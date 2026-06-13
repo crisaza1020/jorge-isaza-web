@@ -43,7 +43,7 @@ function RecursosScreen({ onNavigate }) {
               se borra sino que se transforma — y cómo empezar tu propio proceso hoy.
             </p>
             <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
-              <Button onClick={() => onNavigate('contacto')}>Escuchar episodio</Button>
+              <Button className="secondary-button" onClick={() => onNavigate('contacto')}>Escuchar episodio</Button>
               <span style={{ fontSize: 14, color: 'var(--color-muted)' }}>Episodio 15 · 52 min</span>
             </div>
           </div>
@@ -67,7 +67,7 @@ function RecursosScreen({ onNavigate }) {
           {filtered.map((r, i) => {
             const dark = r.color === 'terracotta' || r.color === 'forest';
             return (
-              <button key={r.t} onClick={() => onNavigate('contacto')} style={recStyles.cardBtn}>
+              <button key={r.t} className="secondary-button" onClick={() => onNavigate('contacto')} style={recStyles.cardBtn}>
                 <article style={recStyles.card}>
                   <image-slot id={`rec-thumb-${r.type}-${i}`} shape="rounded" radius="14"
                     placeholder={r.tipo}
@@ -94,7 +94,7 @@ function RecursosScreen({ onNavigate }) {
             <h2 style={{ ...recStyles.ctaH, ...(isMobile && { fontSize: 24 }) }}>¿Prefieres que lleguen a ti?</h2>
             <p style={recStyles.ctaSub}>Recibe cada nuevo recurso en tu correo, junto a una práctica breve para la semana.</p>
           </div>
-          <Button size="lg" onClick={() => onNavigate('contacto')}>Suscribirme al boletín</Button>
+          <Button className="primary-button" size="lg" onClick={() => onNavigate('contacto')}>Suscribirme al boletín</Button>
         </div>
       </section>
     </div>

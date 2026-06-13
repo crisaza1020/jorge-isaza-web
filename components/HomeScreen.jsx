@@ -104,7 +104,7 @@ function HomeScreen({ onNavigate }) {
                 </li>
               ))}
             </ol>
-            <Button onClick={() => onNavigate('metodologia')}>Ver la metodología completa</Button>
+            <Button className="primary-button" onClick={() => onNavigate('metodologia')}>Ver la metodología completa</Button>
           </div>
         </div>
       </section>
@@ -113,7 +113,7 @@ function HomeScreen({ onNavigate }) {
       <section style={band()}>
         <div style={homeStyles.rowHead}>
           <SectionHead eyebrow="Recursos" title="Para acompañar tu día a día" maxTitle="16ch" />
-          <Button variant="text" onClick={() => onNavigate('recursos')}>Ver todos los recursos →</Button>
+          <Button className="text-cta" variant="text" onClick={() => onNavigate('recursos')}>Ver todos los recursos →</Button>
         </div>
         <div style={{ ...homeStyles.grid3, ...(isMobile && { gridTemplateColumns: '1fr' }) }}>
           {[
@@ -152,7 +152,7 @@ function HomeScreen({ onNavigate }) {
           ))}
         </div>
         <div>
-          <Button variant="text" onClick={() => onNavigate('testimonios')}>Leer más testimonios →</Button>
+          <Button className="text-cta" variant="text" onClick={() => onNavigate('testimonios')}>Leer más testimonios →</Button>
         </div>
       </section>
 
@@ -162,7 +162,7 @@ function HomeScreen({ onNavigate }) {
           <Eyebrow style={{ color: 'rgba(246,239,225,0.7)' }}>Empieza hoy</Eyebrow>
           <h2 style={{ ...homeStyles.ctaH, ...(isMobile && { fontSize: 30, letterSpacing: '-0.8px' }) }}>Da el primer paso hacia tu transformación</h2>
           <p style={{ ...homeStyles.ctaSub, ...(isMobile && { fontSize: 15 }) }}>Reserva una primera sesión de escucha, sin compromiso. Cálida, privada y a tu ritmo.</p>
-          <Button size="lg" variant="onColor" onClick={() => onNavigate('contacto')}>Reservar sesión de escucha</Button>
+          <Button className="primary-button" size="lg" variant="onColor" onClick={() => onNavigate('contacto')}>Reservar sesión de escucha</Button>
         </div>
       </section>
     </div>

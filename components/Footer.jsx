@@ -36,7 +36,7 @@ function Footer({ onNavigate }) {
           </div>
           <form style={footStyles.newsForm} onSubmit={(e) => e.preventDefault()}>
             <input type="email" required placeholder="tu@correo.com" style={footStyles.newsInput} aria-label="Tu correo" />
-            <Button type="submit" size="md">Suscribirme</Button>
+            <Button className="primary-button" type="submit" size="md">Suscribirme</Button>
           </form>
         </div>
       </div>

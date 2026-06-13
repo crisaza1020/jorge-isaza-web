@@ -23,6 +23,10 @@
   a { color: inherit; }
   image-slot { font-family: var(--font-body); }
   button, .nav-links button, .nav-sheet button, .page-enter { transition: transform 180ms ease, box-shadow 180ms ease, color 180ms ease, background-color 180ms ease; }
+  button:not(.nav-link):not(.nav-brand):not(.nav-burger):not(.nav-sheet-link):not(.text-cta):not(:disabled) {
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+    border-radius: 999px;
+  }
   button:not(:disabled):hover { transform: translateY(-1px); }
   button:not(:disabled):active { transform: translateY(0); }
   .nav-links button:hover, .nav-sheet button:hover { color: var(--color-ink); }
@@ -30,8 +34,10 @@
   .hero-cta { border-radius: 999px; min-width: 190px; transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, color 180ms ease; }
   .hero-cta:hover { transform: translateY(-2px); }
   .hero-cta:active { transform: scale(0.98); }
-  .hero-cta-primary { background: var(--color-terracotta); color: var(--color-on-dark); box-shadow: 0 18px 34px rgba(199,93,63,.16); }
-  .hero-cta-secondary { background: var(--color-forest); color: var(--color-on-dark); box-shadow: 0 18px 34px rgba(44,74,64,.16); }
+  .hero-cta-primary, .primary-button { background: var(--color-terracotta) !important; color: var(--color-on-dark) !important; box-shadow: 0 18px 34px rgba(199,93,63,.16) !important; }
+  .hero-cta-secondary, .secondary-button, .oncolor-button { background: var(--color-forest) !important; color: var(--color-on-dark) !important; box-shadow: 0 18px 34px rgba(44,74,64,.16) !important; }
+  .text-cta { color: var(--color-terracotta) !important; background: transparent !important; }
+  .hero-cta, .hero-cta-primary, .hero-cta-secondary, .primary-button, .secondary-button, .oncolor-button, .text-cta { border-radius: 999px !important; }
   button:focus-visible { outline: 2px solid rgba(199,93,63,.9); outline-offset: 3px; }
   ::selection { background: var(--color-peach); color: var(--color-ink); }
   @keyframes pageIn { from { transform: translateY(10px); } to { transform: none; } }

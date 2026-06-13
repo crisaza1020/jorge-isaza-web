@@ -30,7 +30,7 @@ function TopNav({ route, onNavigate }) {
         </nav>
 
         <div style={navStyles.right}>
-          <Button size="sm" onClick={() => go('contacto')}>Reservar sesión</Button>
+          <Button className="secondary-button" size="sm" onClick={() => go('contacto')}>Reservar sesión</Button>
           <button className="nav-burger" style={navStyles.burger} aria-label="Menú" onClick={() => setOpen((o) => !o)}>
             <span style={{ ...navStyles.burgerLine, transform: open ? 'translateY(5px) rotate(45deg)' : 'none' }}></span>
             <span style={{ ...navStyles.burgerLine, opacity: open ? 0 : 1 }}></span>

@@ -84,7 +84,7 @@ function TestimoniosScreen({ onNavigate }) {
           <Eyebrow style={{ color: 'rgba(246,239,225,0.7)' }}>Tu historia, la próxima</Eyebrow>
           <h2 style={{ ...tStyles.ctaH, ...(isMobile && { fontSize: 28, letterSpacing: '-0.6px' }) }}>El primer paso también puede ser tuyo</h2>
           <p style={{ ...tStyles.ctaSub, ...(isMobile && { fontSize: 15 }) }}>Reserva una sesión de escucha y empieza a transformar tu raíz.</p>
-          <Button size="lg" variant="onColor" onClick={() => onNavigate('contacto')}>Reservar sesión</Button>
+          <Button className="oncolor-button" size="lg" variant="onColor" onClick={() => onNavigate('contacto')}>Reservar sesión</Button>
         </div>
       </section>
     </div>
